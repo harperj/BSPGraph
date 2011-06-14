@@ -10,6 +10,6 @@ def step_func(self):
         message = (neighbor, self.data)
         self.parent_graph.sendMessage(message)
         
-myGraph = ringgraph.RingGraph(10, step_func)
+myGraph = ringgraph.RingGraph(8, step_func)
 myGraph.initialize()
-myGraph.run()
+myGraph.run(75)

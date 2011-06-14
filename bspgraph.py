@@ -6,6 +6,7 @@ class BSPGraph:
         self.num_nodes = num_nodes
         self.nodes = [bspnode.BSPNode(self, node_id) for node_id in xrange(num_nodes)]
         self.master_inbox = []
+        self.current_step = 0
         if step_function != None:
             self.setStep(step_function)
     
@@ -17,16 +18,23 @@ class BSPGraph:
         for node in self.nodes:
             node.setStep(step_function)
             
-    def run(self):
+    def run(self, num_steps = -1):
         all_asleep = False
+        
         while not all_asleep:
+            if current_step == num_steps:
+                print "Reached step limit: " + str(current_step) + " steps."
+                break
+                
+            current_step = current_step + 1
             all_asleep = True
             self.deliverMessages()
             for node in self.nodes:
                 if node.active:
                     all_asleep = False
                     node.step()
-        print "All nodes asleep, ending run."
+        if all_asleep:
+            print "All nodes asleep, ending run."
         
         
     def addUndirectedEdge(self, start, end, weight=1):
