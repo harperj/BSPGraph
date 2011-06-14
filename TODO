@@ -1,0 +1,5 @@
+- Implement weighted edges; turn all neighbors into tuples (node_id, weight).  Overhead not an issue at this point.
+- Implement Graph 500 BFS
+    * Ideally would like some way to give a function to BSPGraph for special initialization tasks pre-run()
+    * Implement some sort of timing, for future comparisons
+- Consider interface - is passing functions a good idea?  Would subclassing make more sense, or be unnecessary extra code?
