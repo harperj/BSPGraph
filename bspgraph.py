@@ -22,7 +22,7 @@ class BSPGraph (object):
 
             self.current_step = self.current_step + 1
             all_asleep = True
-            self.deliverMessages()
+            self.deliver_messages()
             for node in self.nodes:
                 if node.active:
                     all_asleep = False
@@ -53,5 +53,5 @@ class BSPGraph (object):
                 #If a node is inactive and receives a message, it should be reactivated.
                 self.nodes[message[0]].active = True
 
-            self.nodes[message[0]].inbox.append(message)
+            self.nodes[message[0]].inbox.append(message[1])
         self.master_inbox = []
