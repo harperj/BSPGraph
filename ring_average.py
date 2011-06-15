@@ -8,8 +8,8 @@ def step_func(self):
     print "Node " + str(self.node_id) + ": " + str(self.data)
     for neighbor in self.neighbors:
         message = (neighbor, self.data)
-        self.parent_graph.sendMessage(message)
-        
-myGraph = ringgraph.RingGraph(8, step_func)
+        self.parent_graph.send_message(message)
+
+myGraph = ringgraph.RingGraph(8)
 myGraph.initialize()
 myGraph.run(75)
