@@ -2,17 +2,17 @@ import loader
 from bspnode import *
 
 class BSPGraph (object):
-    def __init__(self, num_nodes, node_class=BSPNode ):
+    def __init__(self, num_nodes, node_class):
         self.num_nodes = num_nodes
         self.nodes = [node_class(self, node_id) for node_id in xrange(num_nodes)]
         self.master_inbox = []
         self.current_step = 0
 
-    def initialize(self, filename):
-        edges = loader.read_in_edges_ascii(filename)
-        self.build_graph_from_edge_list(edges)
+    def initialize(self):
+        raise Exception("No initialize function defined.  Subclass BSPGraph to implement initialize.")
 
     def run(self, num_steps = -1):
+        self.initialize()
         all_asleep = False
 
         while not all_asleep:
