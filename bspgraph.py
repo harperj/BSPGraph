@@ -49,9 +49,9 @@ class BSPGraph (object):
 
     def deliver_messages(self):
         for message in self.master_inbox:
-            if self.nodes[message[0]].active == False:
+            if self.nodes[message.to_id].active == False:
                 #If a node is inactive and receives a message, it should be reactivated.
-                self.nodes[message[0]].active = True
+                self.nodes[message.to_id].active = True
 
-            self.nodes[message[0]].inbox.append(message[1])
+            self.nodes[message.to_id].inbox.append(message)
         self.master_inbox = []

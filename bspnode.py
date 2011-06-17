@@ -1,6 +1,7 @@
 from collections import namedtuple
 
 Edge = namedtuple('Edge', 'start_id, end_id, weight')
+Message = namedtuple('Message', 'to_id, data')
 
 class BSPNode (object):
     def __init__(self, parent_graph, node_id, active_default = True):

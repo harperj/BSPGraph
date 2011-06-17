@@ -24,14 +24,14 @@ class BSPGraphBasicTests (unittest.TestCase):
 
     def test_send_message(self):
         test_graph = BSPGraph(10, BSPNode)
-        test_graph.send_message((1, 1337))
-        self.assertEqual(test_graph.master_inbox[0], (1, 1337))
+        test_graph.send_message(Message(1, 1337))
+        self.assertEqual(test_graph.master_inbox[0], Message(1, 1337))
 
     def test_deliver_messages(self):
         test_graph = BSPGraph(10, BSPNode)
-        test_graph.send_message((5, 7))
+        test_graph.send_message(Message(5, 7))
         test_graph.deliver_messages()
-        self.assertEqual(test_graph.nodes[5].inbox[0], 7)
+        self.assertEqual(test_graph.nodes[5].inbox[0], Message(5, 7))
 
 class BSPGraphRunTests (unittest.TestCase):
     def test_run_end_when_all_nodes_asleep(self):
