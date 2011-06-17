@@ -32,17 +32,17 @@ class BSPGraph (object):
 
 
     def add_undirected_edge(self, start, end, weight=1):
-        self.nodes[start].add_neighbor(end, weight)
-        self.nodes[end].add_neighbor(start, weight)
+        self.nodes[start].add_edge(end, weight)
+        self.nodes[end].add_edge(start, weight)
 
     def build_graph_from_edge_list(self, edge_list):
         for edge in edge_list:
             self.add_undirected_edge(edge[0], edge[1])
         self.remove_duplicate_neighbors()
 
-    def remove_duplicate_neighbors(self):
+    def remove_duplicate_edges(self):
         for node in self.nodes:
-            node.remove_duplicate_neighbors()
+            node.remove_duplicate_edges()
 
     def send_message(self, message):
          self.master_inbox.append(message)

@@ -19,8 +19,8 @@ class BSPGraphBasicTests (unittest.TestCase):
         test_graph = BSPGraph(2, BSPNode)
         test_graph.add_undirected_edge(0, 1, 2)
 
-        self.assertEqual(test_graph.nodes[0].neighbors, [(1, 2)])
-        self.assertEqual(test_graph.nodes[1].neighbors, [(0, 2)])
+        self.assertEqual(test_graph.nodes[0].edges, [Edge(0, 1, 2)])
+        self.assertEqual(test_graph.nodes[1].edges, [Edge(1, 0, 2)])
 
     def test_send_message(self):
         test_graph = BSPGraph(10, BSPNode)
@@ -48,7 +48,6 @@ class BSPGraphRunTests (unittest.TestCase):
         #We want to assert that the step run() ended on is two,
         #because all nodes should be asleep after step one.
         self.assertEqual(test_graph.current_step, 2)
-
 
 
 if __name__ == '__main__':

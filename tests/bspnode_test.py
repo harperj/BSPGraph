@@ -19,24 +19,30 @@ class BSPNodeBasicTests (unittest.TestCase):
 
     def test_add_neighbor(self):
         test_node = BSPNode(None, None, None)
-        test_node.add_neighbor(1, 10)
-        self.assertEqual(test_node.neighbors, [(1, 10)])
+        test_node.add_edge(1, 10)
+        test_edge = Edge(test_node.node_id, 1, 10)
+        self.assertEqual(test_node.edges[0], test_edge)
 
     def test_remove_duplicate_neighbors(self):
         test_node = BSPNode(None, None, None)
-        test_node.add_neighbor(1, 3)
-        test_node.add_neighbor(1, 3)
-        test_node.add_neighbor(3, 5)
-        test_node.add_neighbor(4, 2)
-        test_node.add_neighbor(4, 2)
+        test_node.add_edge(1, 3)
+        test_node.add_edge(1, 3)
+        test_node.add_edge(3, 5)
+        test_node.add_edge(4, 2)
+        test_node.add_edge(4, 2)
 
         #This should eliminate one of the '1' edges and one of the '4' edges.
         #this leaves expected_neighbors:
-        expected_neighbors = [(1, 3), (3, 5), (4, 2)]
 
-        test_node.remove_duplicate_neighbors()
-        for neighbor in test_node.neighbors:
-            self.assertIn(neighbor, expected_neighbors)
+        expected_edges = [
+            Edge(test_node.node_id, 1, 3),
+            Edge(test_node.node_id, 3, 5),
+            Edge(test_node.node_id, 4, 2)
+            ]
+
+        test_node.remove_duplicate_edges()
+        for edge in test_node.edges:
+            self.assertIn(edge, expected_edges)
 
 
     def test_deactivate(self):
