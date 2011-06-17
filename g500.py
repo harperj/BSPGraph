@@ -1,7 +1,7 @@
 import bspgraph
-import bspnode
+from bspnode import *
 
-class BFSNode (bspnode.BSPNode):
+class BFSNode (BSPNode):
     def step(self):
         self.deactivate()
         if self.data != -1:
@@ -15,9 +15,9 @@ class BFSNode (bspnode.BSPNode):
             else:
                 return
         else:
-            sender = self.inbox[0]
+            sender = self.inbox[0].data
             self.data = sender
             self.inbox = []
 
         for edge in self.edges:
-            self.parent_graph.send_message((edge.end_id, self.node_id))
+            self.parent_graph.send_message(Message(edge.end_id, self.node_id))
