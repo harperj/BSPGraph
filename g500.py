@@ -1,5 +1,15 @@
-import bspgraph
+from bspgraph import *
 from bspnode import *
+
+class BFSGraph (BSPGraph):
+    def pick_target(self):
+        import random
+        target_node_edges = 0
+        target_node = -1
+        while target_node_edges == 0:
+            target_node = random.randint(0, self.num_nodes-1)
+            target_node_edges = len(self.nodes[target_node].edges)
+        return target_node
 
 class BFSNode (BSPNode):
     def step(self):

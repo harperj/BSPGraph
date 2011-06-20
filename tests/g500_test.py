@@ -1,5 +1,7 @@
 import unittest
 from g500 import *
+import bspgraph
+import loader
 
 class BFSNodeTests (unittest.TestCase):
     def test_bfs_ring (self):
@@ -88,6 +90,24 @@ class BFSNodeTests (unittest.TestCase):
         node.visiting = False
         node.checked = True
 
+class BFSGraphTests (unittest.TestCase):
+    def test_initialize (self):
+        test_graph = BFSGraph(10, BFSNode)
+        test_graph.initialize("data/4")
+        edge_list = loader.readInEdgesASCII("data/4")
+        for node in test_graph.nodes:
+            for edge in node.edges:
+                tupe_edge = (edge.start_id, edge.end_id)
+                self.assertIn(tuple_edge, edge_list)
+
+    def test_pick_target (self):
+        test_graph = BFSGraph(10, BFSNode)
+        test_graph.initialize()
+        target = test_graph.pick_target()
+        self.assertTrue(target >= 0)
+        self.assertTrue(target < test_graph.num_nodes)
+        #Node must have outbound edges
+        self.assertNotEqual(len(test_graph.nodes[target].edges), 0)
 
 
 if __name__ == '__main__':
