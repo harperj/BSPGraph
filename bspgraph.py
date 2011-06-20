@@ -12,7 +12,6 @@ class BSPGraph (object):
         raise Exception("No initialize function defined.  Subclass BSPGraph to implement initialize.")
 
     def run(self, num_steps = -1):
-        self.initialize()
         all_asleep = False
 
         while not all_asleep:
