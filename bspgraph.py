@@ -37,7 +37,7 @@ class BSPGraph (object):
     def build_graph_from_edge_list(self, edge_list):
         for edge in edge_list:
             self.add_undirected_edge(edge[0], edge[1])
-        self.remove_duplicate_neighbors()
+        self.remove_duplicate_edges()
 
     def remove_duplicate_edges(self):
         for node in self.nodes:
